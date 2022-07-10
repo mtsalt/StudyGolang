@@ -1,38 +1,30 @@
 package main
 
-type PersonList struct {
-	personList []Person
-}
-
-type Person struct {
-	id   int
-	name string
-	age  int
-}
-
-func (p *Person) SetPerson(id int, name string, age int) {
-	p.id = id
-	p.name = name
-	p.age = age
-}
-
-func (p *Person) Person() (int, string, int) {
-	return p.id, p.name, p.age
-}
-
-func (pl *PersonList) Add(p Person) {
-	pl.personList = append(pl.personList, p)
-}
-
-func (pl *PersonList) Remove(id int) bool {
-
-	for _, p := range pl.personList {
-		if p.id == id {
-
-		}
-	}
-	return true
-}
+import (
+	"fmt"
+	"struct/person"
+)
 
 func main() {
+
+	pl := person.NewPersonList()
+
+	fmt.Println("### Add item to PersonList. ###")
+
+	p1 := person.NewPerson(1, "John", 25)
+	pl.Add(p1)
+
+	p2 := person.NewPerson(2, "Bob", 24)
+	pl.Add(p2)
+
+	p3 := person.NewPerson(3, "Mike", 28)
+	pl.Add(p3)
+
+	pl.PrintList()
+
+	fmt.Println("### Remove item from PersonList. ###")
+	pl.Remove(1) // remove John
+	pl.Remove(2) // remove Bob
+	pl.Remove(3) // remove Mike
+	pl.PrintList()
 }
